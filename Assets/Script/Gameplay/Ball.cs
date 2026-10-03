@@ -22,11 +22,6 @@ public class Ball : MonoBehaviour
         rb_2d = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
-    {
-        Serve(true);
-    }
-
     public void Serve(bool towardPlayer) 
     {
         Stop();
