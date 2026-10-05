@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour
 
     public static event System.Action<Transform, Vector2, float> PaddleHit;
     public static event System.Action<Vector2> WallHit;
+    public static event System.Action Served;
     private bool isMoving;
     private float currentSpeed;
     private Coroutine serveRoutine;
@@ -37,6 +38,7 @@ public class Ball : MonoBehaviour
         Vector2 dir = new Vector2(Random.Range(-0.3f, 0.3f), y).normalized;
         currentSpeed = startSpeed;
         rb_2d.linearVelocity = dir * currentSpeed;
+        Served?.Invoke();
         isMoving = true;
     }
     public void Stop()

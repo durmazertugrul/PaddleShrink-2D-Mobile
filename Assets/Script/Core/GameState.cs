@@ -1,3 +1,3 @@
 using UnityEngine;
 
-public enum GameState { Menu, Serving, Playing, Paused, GameOver }
+public enum GameState { Menu, Playing, Paused, GameOver }

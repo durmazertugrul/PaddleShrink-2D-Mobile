@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b2dbcab9f3fd4114bae3f45f5cffd6ce
+guid: e95b7ca67b5752f48b44c34a49a00784
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -504873472604203336
-    second: ui_overlay_pixel_0
+      213: -3947563801781270653
+    second: ui_circle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,23 +139,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ui_overlay_pixel_0
+      name: ui_circle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 4
-        height: 4
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b698e860445ef8f0800000000000000
-      internalID: -504873472604203336
+      spriteID: 38703aa23af6739c0800000000000000
+      internalID: -3947563801781270653
       vertices: []
       indices: 
       edges: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: d8669543ca90c7e4aa085bd22b9caf44
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ui_overlay_pixel_0: -504873472604203336
+      ui_circle_0: -3947563801781270653
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

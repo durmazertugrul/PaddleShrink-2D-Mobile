@@ -36,5 +36,28 @@ public class AIPaddle : MonoBehaviour
         paddle.MoveTowards(targetX, aiSpeed);
 
     }
-
+    public void ApplyDifficulty(DifficultySettings difficulty)
+    {
+        switch (difficulty)
+        {
+            case DifficultySettings.Easy:
+                aiSpeed = 5;
+                reactionDelay = 0.50f; 
+                errorRange = 1.2f;
+                break;
+            case DifficultySettings.Normal:
+                aiSpeed = 7;
+                reactionDelay = 0.35f;
+                errorRange = 0.8f;
+                break;
+            case DifficultySettings.Hard:
+                aiSpeed = 9.5f;
+                reactionDelay = 0.20f;
+                errorRange = 0.25f;
+                break;
+            default:
+                Debug.LogError("Unknown difficulty level: " + difficulty);
+                break;
+        }
+    }
 }
