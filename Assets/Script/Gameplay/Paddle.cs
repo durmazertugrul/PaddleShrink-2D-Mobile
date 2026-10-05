@@ -1,10 +1,19 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class Paddle : MonoBehaviour
 {
-    [SerializeField] float[] widthSteps = {1.0f, 0.78f, 0.58f, 0.40f };
-    [SerializeField] float shrinkDuration = 0.25f; //animation time
+    [SerializeField] private float[] widthSteps = {1.0f, 0.78f, 0.58f, 0.40f };
+    [SerializeField] private float shrinkDuration = 0.25f; //animation time
+
+    [SerializeField] private Transform visual;
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private float squashX = 1.15f, squashY = 0.7f;
+    [SerializeField] private float squashDuration = 0.25f, flashDuration = 0.12f;
+
+    private Color baseColor;
+
     private Rigidbody2D rb_2d; 
     private BoxCollider2D boxCollider_2d;
     private float limit => Arena.halfWidth - boxCollider_2d.bounds.extents.x; // Limit the paddle's movement to within the arena bounds
@@ -13,11 +22,25 @@ public class Paddle : MonoBehaviour
     private Coroutine shrinkRoutine;
     public int GoalsConceded { get { return goalsConceded; } }
 
+
+    private void OnEnable()
+    {
+        Ball.PaddleHit += HandleHit;
+    }
+
+    private void OnDisable()
+    {
+        Ball.PaddleHit -= HandleHit;
+        visual.DOKill();
+        sprite.DOKill();
+    }
+
     private void Awake()
     {
         rb_2d = GetComponent<Rigidbody2D>();
         boxCollider_2d = GetComponent<BoxCollider2D>();
         baseWidth = transform.localScale.x; // Store the initial width of the paddle
+        baseColor = sprite.color;
     }
     public void MoveTowards(float targetX, float speed)
     {
@@ -68,6 +91,22 @@ public class Paddle : MonoBehaviour
         if (shrinkRoutine !=null) { StopCoroutine(shrinkRoutine); }
         goalsConceded = 0;
         transform.localScale = new Vector3(baseWidth, transform.localScale.y, transform.localScale.z);
+    }
+
+    private void HandleHit(Transform hitPaddle, Vector2 point, float speed)
+    {
+        if (hitPaddle != transform) return;
+
+        visual.DOKill();
+        visual.localScale = new Vector3(squashX, squashY, 1);
+        visual.DOScale(Vector3.one, squashDuration).SetEase(Ease.OutBack);
+
+        sprite.DOKill();
+        //sprite.color = Color.white;
+        sprite.DOColor(baseColor, flashDuration);
+
+
+
     }
 
 }

@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public static event System.Action<GameState> StateChanged;
     public static event System.Action ScoreChanged;
+    public static event System.Action<Paddle> GoalScored;
 
     [SerializeField] private Ball ball;
     [SerializeField] private Paddle playerPaddle;
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
         bool eliminated = concedingPaddle.Shrink(); //if the paddle eliminated, the paddle will shrink
 
         ScoreChanged?.Invoke();
+        GoalScored?.Invoke(concedingPaddle);
 
         AudioManager.Instance.PlayGoal();
         if(!eliminated) AudioManager.Instance.PlayShrink();
